@@ -1,3 +1,4 @@
 *.img filter=lfs diff=lfs merge=lfs -text
 *.nc filter=lfs diff=lfs merge=lfs -text
 *.tiff filter=lfs diff=lfs merge=lfs -text
+geoanalytics/datasets/avgcube.csv filter=lfs diff=lfs merge=lfs -text
