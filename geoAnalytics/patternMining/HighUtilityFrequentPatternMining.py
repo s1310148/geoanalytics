@@ -17,28 +17,28 @@ Copyright (C)  2022 Rage Uday Kiran
 
 
 import pandas as pd
-from PAMI.extras.dbStats.TransactionalDatabase import TransactionalDatabase
-from PAMI.frequentPattern.basic import FPGrowth
+from PAMI.extras.dbStats.UtilityDatabase import UtilityDatabase
+from PAMI.highUtilityFrequentPattern.basic import HUFIM
 
-class FrequentPatternMining:
+class HighUtilityFrequentPatternMining:
     def __init__(self, inputFile=''):
         self.inputFile = inputFile
         self.miner = None  # will hold the FPGrowth instance
 
     def showDBstats(self):
-        obj = TransactionalDatabase(self.inputFile)
+        obj = UtilityDatabase(self.inputFile)
         obj.run()
         obj.printStats()
         obj.plotGraphs()
 
-    def run(self, minSupport=8):
-        self.miner = FPGrowth.FPGrowth(iFile = self.inputFile, minSup=minSupport)
+    def run(self, minSupport = 8, minUtil = 100):
+        self.miner = HUFIM.HUFIM(iFile = self.inputFile, minUtil=minUtil, minSup=minSupport)
         self.miner.mine()
         self.miner.printResults()
 
-    def save(self, outputFile='FrequentPatterns.txt'):
+    def save(self, outputFile='UtilityFrequentPatterns.txt'):
         if self.miner is not None:
             self.miner.save(outputFile)
-            print(f"Frequent patterns saved to: {outputFile}")
+            print(f"Utility Frequent Patterns patterns saved to: {outputFile}")
         else:
             print("No mining results to save. Please execute run() method first.")
