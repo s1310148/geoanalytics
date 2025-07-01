@@ -17,9 +17,6 @@ Copyright (C)  2022 Rage Uday Kiran
 
 import time
 import psutil
-import numpy as np
-import matplotlib.pyplot as plt
-from tqdm import tqdm
 from sklearn.cluster import AffinityPropagation
 from sklearn.preprocessing import StandardScaler
 import pandas as pd
