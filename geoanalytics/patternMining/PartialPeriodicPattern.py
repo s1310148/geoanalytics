@@ -19,26 +19,13 @@ Copyright (C)  2022 Rage Uday Kiran
 import pandas as pd
 from PAMI.extras.dbStats.TemporalDatabase import TemporalDatabase
 from PAMI.partialPeriodicPattern.basic import PPPGrowth
+from abstract import PatternMiner
 
-class PartialPeriodicPatternMining:
-    def __init__(self, inputFile=''):
-        self.inputFile = inputFile
-        self.miner = None  # will hold the FPGrowth instance
+class PartialPeriodicPatternMining(PatternMiner):
+    def _create_database(self):
+        return TemporalDatabase(self.inputFile)
 
-    def showDBstats(self):
-        obj = TemporalDatabase(self.inputFile)
-        obj.run()
-        obj.printStats()
-        obj.plotGraphs()
-
-    def run(self, minSupport=8,period=5000):
+    def run(self, minSupport: int, period: int):
         self.miner = PPPGrowth.PPPGrowth(iFile = self.inputFile, minPS = minSupport, period = period)
         self.miner.mine()
         self.miner.printResults()
-
-    def save(self, outputFile='PartialPeriodicPatterns.txt'):
-        if self.miner is not None:
-            self.miner.save(outputFile)
-            print(f"Partial periodic patterns saved to: {outputFile}")
-        else:
-            print("No mining results to save. Please execute run() method first.")

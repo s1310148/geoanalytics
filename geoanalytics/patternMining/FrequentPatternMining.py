@@ -15,30 +15,16 @@ Copyright (C)  2022 Rage Uday Kiran
      along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-
 import pandas as pd
 from PAMI.extras.dbStats.TransactionalDatabase import TransactionalDatabase
 from PAMI.frequentPattern.basic import FPGrowth
+from abstract import PatternMiner
 
-class FrequentPatternMining:
-    def __init__(self, inputFile=''):
-        self.inputFile = inputFile
-        self.miner = None  # will hold the FPGrowth instance
+class FrequentPatternMining(PatternMiner):
+    def _create_database(self):
+        return TransactionalDatabase(self.inputFile)
 
-    def showDBstats(self):
-        obj = TransactionalDatabase(self.inputFile)
-        obj.run()
-        obj.printStats()
-        obj.plotGraphs()
-
-    def run(self, minSupport=8):
-        self.miner = FPGrowth.FPGrowth(iFile = self.inputFile, minSup=minSupport)
+    def run(self, minSupport: int):
+        self.miner = FPGrowth.FPGrowth(iFile=self.inputFile, minSup=minSupport)
         self.miner.mine()
         self.miner.printResults()
-
-    def save(self, outputFile='FrequentPatterns.txt'):
-        if self.miner is not None:
-            self.miner.save(outputFile)
-            print(f"Frequent patterns saved to: {outputFile}")
-        else:
-            print("No mining results to save. Please execute run() method first.")
