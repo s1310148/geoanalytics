@@ -46,6 +46,7 @@ Copyright (C)  2022 Rage Uday Kiran
 
 import pandas as pd
 from geoanalytics.conversion import DF2DB
+from typing import Union
 
 class RasterDF2DB:
     """
@@ -111,16 +112,16 @@ class RasterDF2DB:
         """
 
         data = self.df.iloc[:, 2:]
-        point_labels = 'POINT(' + self.df.iloc[:, 0].astype(str) + ',' + self.df.iloc[:, 1].astype(str) + ')'
+        point_labels = 'Point(' + self.df.iloc[:, 0].astype(str) + ' ' + self.df.iloc[:, 1].astype(str) + ')'
         newDF = pd.DataFrame()
-        newDF['new_col'] = point_labels
+        newDF['Band'] = point_labels
         newDF = pd.concat([newDF, data.reset_index(drop=True)], axis=1)
-        newDF = newDF.set_index('new_col').T
+        newDF = newDF.set_index('Band').T
         newDF.index = newDF.index.astype(int)
         self.transactionDF = newDF
-        print("Prepared transactional DataFrame:", self.transactionDF.shape)
+        return self.transactionDF
 
-    def convertToTransactionalDB(self, DBname='transactionalDB.csv', condition='>=', thresholdValue=4000):
+    def convertToTransactionalDB(self, DBname: str, condition: str, thresholdValue: Union[int, float]):
         """
         Converts the transactional DataFrame into a basic transactional database format.
 
@@ -137,7 +138,7 @@ class RasterDF2DB:
         )
         print(f"Saved transaction DB to: {DBname}")
 
-    def convertToTemporalDB(self, DBname='temporalDB.csv', condition='>=', thresholdValue=4000):
+    def convertToTemporalDB(self, DBname: str, condition: str, thresholdValue: Union[int, float]):
         """
         Converts to a temporal database format.
 
@@ -154,7 +155,7 @@ class RasterDF2DB:
         )
         print(f"Saved temporal DB to: {DBname}")
 
-    def convertToUtilityDB(self, DBname='UtilityDB.csv'):
+    def convertToUtilityDB(self, DBname: str):
         """
         Converts to a utility database format (with weights).
 
@@ -167,7 +168,7 @@ class RasterDF2DB:
         )
         print(f"Saved utility DB to: {DBname}")
 
-    def convertToGeoReferencedTransactionalDB(self, DBname='geoReferencedTransactionalDatabase.csv', condition='>=', thresholdValue=4000):
+    def convertToGeoReferencedTransactionalDB(self, DBname: str, condition: str, thresholdValue: Union[int, float]):
         """
         Converts to a geo-referenced transactional database format.
 
@@ -184,7 +185,7 @@ class RasterDF2DB:
         )
         print(f"Saved geo-referenced transaction DB to: {DBname}")
 
-    def convertToGeoReferencedTemporalDB(self, DBname='geoReferencedTemporalDatabase.csv', condition='>=', thresholdValue=4000):
+    def convertToGeoReferencedTemporalDB(self, DBname: str, condition: str, thresholdValue: Union[int, float]):
         """
         Converts to a geo-referenced temporal database format.
 
@@ -201,7 +202,7 @@ class RasterDF2DB:
         )
         print(f"Saved geo-referenced temporal DB to: {DBname}")
 
-    def convertToUncertainTransactionalDB(self, DBname='UncertainTransactionalDB.csv', condition='>=', thresholdValue=4000):
+    def convertToUncertainTransactionalDB(self, DBname: str, condition: str, thresholdValue: Union[int, float]):
         """
         Converts to an uncertain transactional database format (for probabilistic scenarios).
 
@@ -218,7 +219,7 @@ class RasterDF2DB:
         )
         print(f"Saved uncertain transaction DB to: {DBname}")
 
-    def convertToMultipleTimeSeries(self, DBname='MultipleTimeSeriesDB.csv', condition='>=', thresholdValue=4000, interval = 2):
+    def convertToMultipleTimeSeries(self, DBname: str, condition: str, thresholdValue: Union[int, float], interval: int):
         """
         Converts data into multiple time series format.
 

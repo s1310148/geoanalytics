@@ -18,14 +18,14 @@ Copyright (C)  2022 Rage Uday Kiran
 
 import pandas as pd
 from PAMI.extras.dbStats.TemporalDatabase import TemporalDatabase
-from PAMI.periodicFrequentPattern.basic import PFPGrowth
+from PAMI.localPeriodicPattern.basic import LPPGrowth
 from abstract import PatternMiner
 
-class PeriodicFrequentPatternMining(PatternMiner):
+class LocalPeriodicPatternMining(PatternMiner):
     def _create_database(self):
         return TemporalDatabase(self.inputFile)
 
-    def run(self, minSupport: int, maxPer: int):
-        self.miner = PFPGrowth.PFPGrowth(iFile = self.inputFile, minSup=minSupport, maxPer = maxPer)
+    def run(self, maxPer: int, maxSoPer: int, minDur: int):
+        self.miner = LPPGrowth.LPPGrowth(iFile = self.inputFile, maxPer=maxPer, maxSoPer=maxSoPer, minDur=minDur)
         self.miner.mine()
         self.miner.printResults()

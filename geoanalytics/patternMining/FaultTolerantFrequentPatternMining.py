@@ -15,17 +15,17 @@ Copyright (C)  2022 Rage Uday Kiran
      along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-
 import pandas as pd
-from PAMI.extras.dbStats.TemporalDatabase import TemporalDatabase
-from PAMI.periodicFrequentPattern.basic import PFPGrowth
+from PAMI.extras.dbStats.TransactionalDatabase import TransactionalDatabase
+from PAMI.faultTolerantFrequentPattern.basic import FTFPGrowth
 from abstract import PatternMiner
+from typing import Union
 
-class PeriodicFrequentPatternMining(PatternMiner):
+class FaultTolerantFrequentPatternMining(PatternMiner):
     def _create_database(self):
-        return TemporalDatabase(self.inputFile)
+        return TransactionalDatabase(self.inputFile)
 
-    def run(self, minSupport: int, maxPer: int):
-        self.miner = PFPGrowth.PFPGrowth(iFile = self.inputFile, minSup=minSupport, maxPer = maxPer)
+    def run(self, minSupport: int, itemSup: int, minLength: int, faultTolerance: int):
+        self.miner = FTFPGrowth.FTFPGrowth(iFile=self.inputFile, minSup=minSupport, itemSup=itemSup, minLength=minLength, faultTolerance=faultTolerance)
         self.miner.mine()
         self.miner.printResults()

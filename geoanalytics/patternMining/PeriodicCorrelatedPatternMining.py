@@ -18,14 +18,15 @@ Copyright (C)  2022 Rage Uday Kiran
 
 import pandas as pd
 from PAMI.extras.dbStats.TemporalDatabase import TemporalDatabase
-from PAMI.periodicFrequentPattern.basic import PFPGrowth
+from PAMI.periodicCorrelatedPattern.basic import EPCPGrowth
+from typing import Union
 from abstract import PatternMiner
 
-class PeriodicFrequentPatternMining(PatternMiner):
+class PeriodicCorrelatedPatternMining(PatternMiner):
     def _create_database(self):
         return TemporalDatabase(self.inputFile)
 
-    def run(self, minSupport: int, maxPer: int):
-        self.miner = PFPGrowth.PFPGrowth(iFile = self.inputFile, minSup=minSupport, maxPer = maxPer)
+    def run(self, minSupport: int, minAllConf: float, maxPerAllConf: float, maxPer: Union[int, float]):
+        self.miner = EPCPGrowth.EPCPGrowth(iFile = self.inputFile, minSup=minSupport, minAllConf=minAllConf, maxPerAllConf=maxPerAllConf, maxPer=maxPer)
         self.miner.mine()
         self.miner.printResults()

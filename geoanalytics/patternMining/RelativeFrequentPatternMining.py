@@ -15,17 +15,16 @@ Copyright (C)  2022 Rage Uday Kiran
      along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-
 import pandas as pd
-from PAMI.extras.dbStats.TemporalDatabase import TemporalDatabase
-from PAMI.periodicFrequentPattern.basic import PFPGrowth
+from PAMI.extras.dbStats.TransactionalDatabase import TransactionalDatabase
+from PAMI.relativeFrequentPattern.basic import RSFPGrowth
 from abstract import PatternMiner
 
-class PeriodicFrequentPatternMining(PatternMiner):
+class RelativeFrequentPatternMining(PatternMiner):
     def _create_database(self):
-        return TemporalDatabase(self.inputFile)
+        return TransactionalDatabase(self.inputFile)
 
-    def run(self, minSupport: int, maxPer: int):
-        self.miner = PFPGrowth.PFPGrowth(iFile = self.inputFile, minSup=minSupport, maxPer = maxPer)
+    def run(self, minSupport: int, minRS: float):
+        self.miner = RSFPGrowth.RSFPGrowth(iFile=self.inputFile, minSup=minSupport, minRS=minRS)
         self.miner.mine()
         self.miner.printResults()

@@ -47,7 +47,8 @@ dependencies = [
   'numba',
   'pami',
   'rasterio',
-  'fancyimpute'
+  'fancyimpute',
+  'deprecation'
 ]
 
 [project.urls]
