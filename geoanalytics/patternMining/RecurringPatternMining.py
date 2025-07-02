@@ -20,7 +20,7 @@ import pandas as pd
 from PAMI.extras.dbStats.TemporalDatabase import TemporalDatabase
 from PAMI.recurringPattern.basic import RPGrowth
 from typing import Union
-from abstract import PatternMiner
+from .abstract import PatternMiner
 
 class RecurringPatternMining(PatternMiner):
     def _create_database(self):

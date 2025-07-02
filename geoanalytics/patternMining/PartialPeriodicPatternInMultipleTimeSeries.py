@@ -19,7 +19,7 @@ Copyright (C)  2022 Rage Uday Kiran
 import pandas as pd
 from PAMI.extras.dbStats.TemporalDatabase import TemporalDatabase
 from PAMI.partialPeriodicPatternInMultipleTimeSeries import PPGrowth
-from abstract import PatternMiner
+from .abstract import PatternMiner
 
 class PartialPeriodicPatternInMultipleTimeSeries(PatternMiner):
     def _create_database(self):

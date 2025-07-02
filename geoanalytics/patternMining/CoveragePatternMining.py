@@ -18,7 +18,7 @@ Copyright (C)  2022 Rage Uday Kiran
 import pandas as pd
 from PAMI.extras.dbStats.TransactionalDatabase import TransactionalDatabase
 from PAMI.coveragePattern.basic import CMine
-from abstract import PatternMiner
+from .abstract import PatternMiner
 from typing import Union
 
 class CoveragePatternMining(PatternMiner):

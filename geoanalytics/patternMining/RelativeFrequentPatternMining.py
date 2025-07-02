@@ -18,7 +18,7 @@ Copyright (C)  2022 Rage Uday Kiran
 import pandas as pd
 from PAMI.extras.dbStats.TransactionalDatabase import TransactionalDatabase
 from PAMI.relativeFrequentPattern.basic import RSFPGrowth
-from abstract import PatternMiner
+from .abstract import PatternMiner
 
 class RelativeFrequentPatternMining(PatternMiner):
     def _create_database(self):

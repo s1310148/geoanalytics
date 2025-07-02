@@ -20,7 +20,7 @@ import pandas as pd
 from PAMI.extras.dbStats.TemporalDatabase import TemporalDatabase
 from PAMI.periodicCorrelatedPattern.basic import EPCPGrowth
 from typing import Union
-from abstract import PatternMiner
+from .abstract import PatternMiner
 
 class PeriodicCorrelatedPatternMining(PatternMiner):
     def _create_database(self):
