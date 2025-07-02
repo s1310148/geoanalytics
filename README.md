@@ -90,6 +90,7 @@ In this latest version, the following updates have been made:
   - Included new algorithms in patternMining, **CorrelatedPatternMining**, **CoveragePatternMining**, **FaultTolerantFrequentPatternMining**, **FrequentPatternMining**, **LocalPeriodicPatternMining**, **PartialPeriodicFrequentPatternMining**, **PartialPeriodicPatternMining**, **PartialPeriodicPatternInMultipleTimeSeries**, **PeriodicCorrelatedPatternMining**, **RecurringPatternMining**, **RelativeFrequentPatternMining**, and **PeriodicFrequentPatternMining** for identifying the patterns.
   - Included new algorithms in normalization.
   - Test cases are implemented using geoanalytics package.
+
 Total number of algorithms: 50+
 ***
 # Features
