@@ -34,7 +34,7 @@ class PatternMiner(ABC):
         else:
             print("No mining results to save. Please execute run() method first.")
 
-    def saveAsDataframe(self):
+    def getDataframe(self):
         if self.miner is not None:
             return self.miner.getPatternsAsDataFrame()
         else:
