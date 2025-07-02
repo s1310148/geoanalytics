@@ -85,11 +85,12 @@ Useful links to utilize the services of this library were provided below:
 ***
 # Recent Updates
 
-- **Version 2025.06.04:** 
+- **Version 2025.7.2:** 
 In this latest version, the following updates have been made:
-  - Included thirteen new algorithms in imputation, **BackwardFill**, **ForwardFill**, **HotDeck**, **Interpolation**, **KNNImputation**, **MatrixFactorization**, **MeanImputation**, **MedianImputation**, **MICEImputation**, **ModeImputation**, **MultipleImputation**, **NumberImputation**, and **SoftImputation** for filling nan values.
+  - Included new algorithms in patternMining, **CorrelatedPatternMining**, **CoveragePatternMining**, **FaultTolerantFrequentPatternMining**, **FrequentPatternMining**, **LocalPeriodicPatternMining**, **PartialPeriodicFrequentPatternMining**, **PartialPeriodicPatternMining**, **PartialPeriodicPatternInMultipleTimeSeries**, **PeriodicCorrelatedPatternMining**, **RecurringPatternMining**, **RelativeFrequentPatternMining**, and **PeriodicFrequentPatternMining** for identifying the patterns.
+  - Included new algorithms in normalization.
   - Test cases are implemented using geoanalytics package.
-Total number of algorithms: 30+
+Total number of algorithms: 50+
 ***
 # Features
 
